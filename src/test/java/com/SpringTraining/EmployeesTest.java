@@ -32,4 +32,9 @@ public class EmployeesTest {
 				post("/employees2").content("{\"name\":\"Jac\",\"gender\":\"Female\"}").contentType("application/json"))
 				.andExpect(status().isOk());
 	}
+	@Test
+	public void getEmployee3() throws Exception {
+		this.mockMvc.perform(get("/employees3/1"))
+				.andExpect(content().json("{\"name\":\"Leo\",\"gender\":\"Male\"};"));
+	}
 }

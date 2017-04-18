@@ -5,9 +5,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class Employees {
 	private String name, gender;
+	private int id;
 
-	public Employees(String name, String gender) {
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Employees(int id ,String name, String gender) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.gender = gender;
 	}
