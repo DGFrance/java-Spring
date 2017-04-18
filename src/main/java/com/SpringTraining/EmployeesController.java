@@ -15,13 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class EmployeesController {
 	List<Employees> employees = new ArrayList<>();
-	
-	
+
+	public EmployeesController() {
+		this.employees.add(new Employees("1", "Leo", "Male"));
+		this.employees.add(new Employees("2", "Jac", "Female"));
+	}
+
 	@RequestMapping(value = "/employees", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Employees> getEmployeegender (@RequestParam(value = "gender", defaultValue = "male") String Gender) {
-		employees.add(new Employees(1,"Leo", "Male"));
-		employees.add(new Employees(2,"Jac", "Female"));
+	public List<Employees> getEmployeegender(@RequestParam(value = "gender", defaultValue = "male") String Gender) {
 		return this.employees.stream().filter(s -> s.getGender().equalsIgnoreCase(Gender)).collect(Collectors.toList());
 	}
 
@@ -31,15 +33,16 @@ public class EmployeesController {
 		this.employees.add(AllEmployee);
 		return AllEmployee;
 	}
-	
+
 	@RequestMapping(value = "/employees3/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public Employees getEmployees3(@PathVariable int id){
-		Employees employeesId = this.employees.stream().filter(s -> s.getId() == (id)).findFirst().orElse(null);
-				if (employeesId == null){
-				throw new EmployeeNotFoundException();
-				}else{
-					return employeesId;
-				}
+	public Employees getEmployees3(@PathVariable String id) {
+		Employees employeesId = this.employees.stream().filter(s -> s.getId().equalsIgnoreCase(id)).findFirst()
+				.orElse(null);
+		if (employeesId == null) {
+			throw new EmployeeNotFoundException();
+		} else {
+			return employeesId;
+		}
 	}
 }

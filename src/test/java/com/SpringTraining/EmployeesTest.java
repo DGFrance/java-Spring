@@ -23,7 +23,7 @@ public class EmployeesTest {
 	@Test
 	public void getEmployee() throws Exception {
 		this.mockMvc.perform(get("/employees?gender=male"))
-				.andExpect(content().json("{\"name\":\"Leo\",\"gender\":\"Male\"}"));
+				.andExpect(content().json("[{\"name\":\"Leo\",\"gender\":\"Male\"}]"));
 	}
 
 	@Test
@@ -35,6 +35,7 @@ public class EmployeesTest {
 	@Test
 	public void getEmployee3() throws Exception {
 		this.mockMvc.perform(get("/employees3/1"))
-				.andExpect(content().json("{\"name\":\"Leo\",\"gender\":\"Male\"};"));
+				.andExpect(content().json("{"
+						+ "\"name\":\"Leo\",\"gender\":\"Male\"}"));
 	}
 }

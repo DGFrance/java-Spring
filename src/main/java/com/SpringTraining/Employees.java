@@ -4,16 +4,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Employees {
-	private String name, gender;
-	private int id;
+	private String name, gender, id;
+	
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	public Employees(int id ,String name, String gender) {
+	public Employees(String id ,String name, String gender) {
 		super();
 		this.id = id;
 		this.name = name;
